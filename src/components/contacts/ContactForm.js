@@ -56,6 +56,7 @@ const ContactForm = () => {
         name='name'
         value={name}
         onChange={onChange}
+        required
       />
       <input
         type='email'
@@ -70,6 +71,7 @@ const ContactForm = () => {
         name='phone'
         value={phone}
         onChange={onChange}
+        required
       />
       <h5>Contact Type</h5>
       <input

@@ -15,6 +15,8 @@ import {
   CONTACT_ERROR
 } from '../types';
 
+const baseURL = "https://kontacts-api.herokuapp.com"
+
 const ContactState = props => {
   const initialState = {
     contacts: null,
@@ -28,7 +30,7 @@ const ContactState = props => {
   // Get Contacts
   const getContacts = async () => {
     try {
-      const res = await axios.get('/api/contacts');
+      const res = await axios.get(`${baseURL}/api/contacts`);
 
       dispatch({
         type: GET_CONTACTS,
@@ -51,9 +53,9 @@ const ContactState = props => {
     };
 
     try {
-      const res = await axios.post('/api/contacts', contact, config);
+      const res = await axios.post(`${baseURL}/api/contacts`, contact, config);
 
-      dispatch({
+      await dispatch({
         type: ADD_CONTACT,
         payload: res.data
       });
@@ -68,7 +70,7 @@ const ContactState = props => {
   // Delete Contact
   const deleteContact = async id => {
     try {
-      await axios.delete(`/api/contacts/${id}`);
+      await axios.delete(`${baseURL}/api/contacts/${id}`);
 
       dispatch({
         type: DELETE_CONTACT,
@@ -92,7 +94,7 @@ const ContactState = props => {
 
     try {
       const res = await axios.put(
-        `/api/contacts/${contact._id}`,
+        `${baseURL}/api/contacts/${contact._id}`,
         contact,
         config
       );
